@@ -9,7 +9,7 @@ print("############-Contact: malcher.tm@gmail.com-##############")
 print("#########################################################")
 
 print("##################-Select Option to run-#################")
-from utils.binarizationAndGrayscaleHistogramGen import methodUsingImread, methodUsingPpmImage
+from utils.binarizationAndGrayscaleHistogramGen import methodUsingPpmImage
 
 menu = {}
 menu['1']="Image binarization and grayscale image histogram generation."
@@ -40,8 +40,8 @@ if optionSelected == '1':
     if actionSelected == "1":
         # you can change file ppm, this files stay in filesPPM in project
         pathOs = os.getcwd()
-        pathImage = pathOs + r"\venv\filesPPM\apollo.ppm"
-        pathImageSave = pathOs + r"\venv\filesPPM\Result\result.ppm"
+        pathImage = pathOs + r"\filesPPM\apollo.ppm"
+        pathImageSave = pathOs + r"\filesPPM\Result\result.ppm"
         res = methodUsingPpmImage(pathImage, pathImageSave)
         if res == "SUCESS":
             print('SUCESS PROCESS USING PPM FILE')
