@@ -9,12 +9,16 @@ print("############-Contact: malcher.tm@gmail.com-##############")
 print("#########################################################")
 
 print("##################-Select Option to run-#################")
-from utils.binarizationAndGrayscaleHistogramGen import methodUsingPpmImage
+from utils.binarizationAndGrayscaleHistogramGen import methodUsingPpmImage, methodUsingImread
+from utils.stretchingOperation import stretchingLinear, stretchingLinearParts, stretchingLogarithm
+from utils.histogramEqualization import equalizationHistogram
+#local variables
+pathOs = os.getcwd()
 
 menu = {}
 menu['1']="Image binarization and grayscale image histogram generation."
-menu['2']="Delete Student."
-menu['3']="Find Student"
+menu['2']="Stretching operation."
+menu['3']="Histogram Equalization"
 menu['4']="Exit"
 
 action = {}
@@ -30,6 +34,7 @@ while True:
   break
 
 if optionSelected == '1':
+
     while True:
         getAction = action.keys()
         for response in getAction:
@@ -39,7 +44,6 @@ if optionSelected == '1':
         break
     if actionSelected == "1":
         # you can change file ppm, this files stay in filesPPM in project
-        pathOs = os.getcwd()
         pathImage = pathOs + r"\filesPPM\apollo.ppm"
         pathImageSave = pathOs + r"\filesPPM\Result\result.ppm"
         res = methodUsingPpmImage(pathImage, pathImageSave)
@@ -47,9 +51,30 @@ if optionSelected == '1':
             print('SUCESS PROCESS USING PPM FILE')
         else:
             print('FAILURE: PROCESS USING PPM FILE')
+    elif actionSelected == "2":
+        pathImage = pathOs + r"\filesIMG\ru.jpg"
+        pathImageSave = pathOs + r"\filesIMG\Result\resultgrayscale.jpg"
+        res = methodUsingImread(pathImage, pathImageSave)
+
 elif optionSelected == '2':
-    print("other question")
+    pathImage = pathOs + r"\filesIMG\ru.jpg"
+    pathImageSave = pathOs + r"\filesIMG\Result\ruresult.jpg"
+    res = stretchingLinear(pathImage, pathImageSave)
+    if(res == "SUCESS"):
+        pathImageSave = pathOs + r"\filesIMG\Result\ruresultlinearparts.jpg"
+        res = stretchingLinearParts(pathImage, pathImageSave)
+        if(res == "SUCESS"):
+            pathImageSave = pathOs + r"\filesIMG\Result\LogratimStrech.jpg"
+            res = stretchingLogarithm(pathImage, pathImageSave)
+            if(res == "SUCESS"):
+                print('PROCESS RUN TO SUCESS')
+
 elif optionSelected == '3':
-    print("other ")
+
+    pathImage = pathOs + r"\filesIMG\ru.jpg"
+    pathImageSave = pathOs + r"\filesIMG\Result\ruresultHistogramEqua.jpg"
+    pathHisto = pathOs + r"\filesIMG\Result\histo.jpg"
+
+    equalizationHistogram(pathImage, pathImageSave,  pathHisto )
 
 
